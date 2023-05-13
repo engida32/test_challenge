@@ -70,7 +70,12 @@ function StepperPage() {
   };
 
   return (
-    <Box>
+    <Box
+      sx={{
+        border: "1px solid ",
+        minHeight: "100%",
+      }}
+    >
       <Grid
         container
         spacing={3}
@@ -94,11 +99,10 @@ function StepperPage() {
             background: "#101313",
             boxShadow: "1px 0px 0px #2D3232",
             // pl: 5,
-            width: "100%",
+            // width: "100%",
             position: "relative",
-            overflow: "hidden",
-            height: "100vh",
-            borderLeft: "5px solid green",
+            overflow: "clip",
+            borderTopLeftRadius: "5px solid green",
           }}
         >
           <Stepper activeStep={activeStep} orientation={"vertical"}>
@@ -180,9 +184,11 @@ function StepperPage() {
                 borderRadius: "50%",
                 width: "100%",
                 border: "1px solid #2D3232",
-                height: "20%",
+                height: "240px",
                 position: "absolute",
-                bottom: 0,
+                bottom: -150,
+                left: 0,
+                right: 0,
                 bg: "#101313",
                 boxSize: "border-box",
 
@@ -484,9 +490,8 @@ function StepperPage() {
               <Typography
                 sx={{
                   color: "#fff",
-                  fontWeight: " 500",
+                  fontWeight: 500,
                   fontSize: "32px",
-                  lineHeight: "38px",
                 }}
               >
                 What is your main goal with AlphaQuest?{" "}
@@ -495,7 +500,7 @@ function StepperPage() {
                 name="radio-buttons-group"
                 value={value}
                 onChange={handleChange}
-                sx={{ display: "flex", flexDirection: "column", gap: 3 }}
+                sx={{ display: "flex", flexDirection: "column", gap: 1 }}
               >
                 <FormControlLabel
                   value="Grow My Community"
@@ -605,28 +610,235 @@ function StepperPage() {
           {activeStep === 2 && (
             <Box
               sx={{
-                width: "60%",
-                my: 2,
+                m: 2,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-start",
+                alignItems: "start",
               }}
             >
+              <Box>
+                <Typography
+                  mb={4}
+                  align="start"
+                  sx={{
+                    fontWeight: "400",
+                    fontSize: "20px",
+                    color: "#2B8CE6",
+                  }}
+                >
+                  Project Details{" "}
+                </Typography>
+                <Typography
+                  sx={{
+                    color: "#fff",
+                    fontWeight: " 500",
+                    fontSize: "28px",
+                  }}
+                >
+                  How many full-time workers on the project?{" "}
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  display: "flex",
+                  width: {
+                    xs: "100%",
+                    sm: "100%",
+                    md: "50%",
+                    lg: "40%",
+                  },
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                }}
+              >
+                <Button
+                  variant="contained"
+                  sx={{
+                    borderRadius: "10px",
+                    background: "rgba(250, 250, 250, 0.1)",
+                    backdropFilter: "blur(10px)",
+                    fontSize: "33px",
+                    height: "100%",
+                  }}
+                  // onClick={handleDecrement}
+                >
+                  -
+                </Button>
+
+                <TextField
+                  placeholder="4"
+                  onChange={(e) => setInput1(e.target.value)}
+                  disabled
+                  value={input1}
+                  sx={{
+                    m: 2,
+                    color: "white",
+                    borderRadius: "10px",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                    "& .MuiInputBase-input": {
+                      color: "red",
+                      "&::placeholder": {
+                        color: "red",
+                      },
+                    },
+                  }}
+                />
+
+                <Button
+                  variant="contained"
+                  sx={{
+                    borderRadius: "10px",
+                    background: "rgba(250, 250, 250, 0.1)",
+                    backdropFilter: "blur(10px)",
+                    fontSize: "33px",
+                    height: "100%",
+                  }}
+                  // onClick={handleIncrement}
+                >
+                  +
+                </Button>
+              </Box>
+              <Typography
+                sx={{
+                  color: "#fff",
+                  fontWeight: " 500",
+                  fontSize: "28px",
+                  my: 4,
+                }}
+              >
+                Are you pre or post product launch?{" "}
+              </Typography>
               <RadioGroup
-                value={radioValue}
-                onChange={(e) => setRadioValue(e.target.value)}
-                sx={{ color: "#000" }}
+                name="radio-buttons-group"
+                value={value}
+                onChange={handleChange}
+                sx={{ display: "flex", flexDirection: "column", gap: 1 }}
               >
                 <FormControlLabel
-                  value="option1"
-                  control={<Radio />}
-                  label="Option 1"
+                  value="Pre Product"
+                  control={<Radio sx={{ color: "gray" }} />}
+                  label="Pre Product"
+                  sx={{
+                    color: "#ffff",
+
+                    borderRadius: "4px",
+                    "&.Mui-checked": {
+                      borderColor: "green",
+                      backgroundColor: "lightgreen",
+                    },
+                  }}
                 />
+
                 <FormControlLabel
-                  value="option2"
-                  control={<Radio />}
-                  label="Option 2"
+                  value="Post Product"
+                  control={<Radio sx={{ color: "gray" }} />}
+                  label="Post Product"
+                  sx={{
+                    color: "#ffff",
+
+                    borderRadius: "4px",
+                    "&.Mui-checked": {
+                      borderColor: "green",
+                      backgroundColor: "lightgreen",
+                    },
+                  }}
                 />
               </RadioGroup>
-              <Button onClick={handleBack}>Back</Button>
-              <Button type="submit">Submit</Button>
+
+              <FormControlLabel
+                sx={{
+                  color: "#fff",
+                  display: "flex",
+                  flexDirection: "column-reverse",
+                  justifyContent: "center",
+                  alignContent: "center",
+                  alignItems: "start",
+                  width: "90%",
+                  my: 4,
+                }}
+                control={
+                  <TextField
+                    placeholder="awesomenft@gmail.com"
+                    onChange={(e) => setInput1(e.target.value)}
+                    sx={{
+                      // width: "60%",
+                      my: 2,
+                      color: "#fff",
+                      borderRadius: "10px",
+                      border: "1px solid rgba(255, 255, 255, 0.1)",
+
+                      "& .MuiInputBase-input": {
+                        color: "#fff",
+                        "&::placeholder": {
+                          color: "#fff",
+                        },
+                      },
+                    }}
+                  />
+                }
+                label={
+                  <span
+                    style={{
+                      fontWeight: "bolder",
+                      fontSize: "33px",
+                    }}
+                  >
+                    {" "}
+                    Contact Email{" "}
+                  </span>
+                }
+                labelPlacement="start"
+              />
+
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  justifyItems: "flex-start",
+                  alignItems: "flex-start",
+                  padding: "0px",
+                  gap: "32px",
+
+                  width: {
+                    xs: "100%",
+                    sm: "100%",
+                    md: "70%",
+                    lg: "50%",
+                  },
+                }}
+              >
+                <Button
+                  onClick={handleBack}
+                  sx={{
+                    maxWidth: "50%",
+                    mt: 5,
+                    padding: "13px 34px",
+                    color: "#FAFAFA",
+                    background: "rgba(250, 250, 250, 0.1) ",
+                    borderRadius: "10px",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                  }}
+                >
+                  Back
+                </Button>
+                <Button
+                  onClick={handleNext}
+                  sx={{
+                    width: "50%",
+                    padding: "13px 24px",
+
+                    mt: 5,
+                    color: "#101313",
+                    bgcolor: "#2B8CE5",
+                    borderRadius: "10px",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                  }}
+                >
+                  Create Project
+                </Button>
+              </Box>
             </Box>
           )}
         </Grid>
