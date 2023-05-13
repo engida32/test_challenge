@@ -3,8 +3,18 @@ import { Container, Paper, Typography, Box, Button } from "@mui/material";
 import { ProjectContext } from "../context/projectContex";
 
 function ProjectPage() {
-  const { projectData } = useContext(ProjectContext);
+  const { projectData, updateProjectData } = useContext(ProjectContext);
 
+  const handleReset = () => {
+    updateProjectData({
+      projectName: "",
+      projectUrl: "www",
+      workerCount: 4,
+      type: "",
+      email: "",
+      aim: "",
+    });
+  };
   return (
     <Container
       maxWidth="md"
@@ -63,7 +73,7 @@ function ProjectPage() {
             Project URL
           </Typography>
           <Typography variant="body1" gutterBottom sx={{ color: "#101313" }}>
-            {projectData.projectURL}
+            {projectData.projectUrl}
           </Typography>
         </Box>
 
@@ -82,6 +92,20 @@ function ProjectPage() {
           </Typography>
         </Box>
 
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            marginBottom: "2rem",
+          }}
+        >
+          <Typography variant="h6" gutterBottom sx={{ color: "#F9A825" }}>
+            Aim
+          </Typography>
+          <Typography variant="body1" gutterBottom sx={{ color: "#101313" }}>
+            {projectData.aim}
+          </Typography>
+        </Box>
         <Box
           sx={{
             display: "flex",
@@ -115,7 +139,10 @@ function ProjectPage() {
           variant="contained"
           color="primary"
           sx={{ marginBottom: "2rem" }}
-          onClick={() => window.history.back()}
+          onClick={() => {
+            window.history.back();
+            handleReset();
+          }}
         >
           {" "}
           Back{" "}

@@ -1,9 +1,7 @@
 import { Circle } from "@mui/icons-material";
 import {
-  Autocomplete,
   Box,
   Button,
-  Checkbox,
   Chip,
   FormControlLabel,
   Grid,
@@ -11,7 +9,6 @@ import {
   RadioGroup,
   Stack,
   Step,
-  StepConnector,
   StepLabel,
   Stepper,
   TextField,
@@ -31,14 +28,6 @@ function StepperPage() {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
-  // const handleReset = () => {
-  //   setActiveStep(0);
-  //   setInput1("");
-  //   setInput2("");
-  //   setCheckboxValue(false);
-  //   setRadioValue("");
-  // };
 
   const { projectData, updateProjectData } = useContext(ProjectContext);
 
@@ -317,7 +306,6 @@ function StepperPage() {
             my: 5,
             placeSelf: "start",
             mx: "auto",
-            // border: "1px solid yellow",
           }}
         >
           {activeStep === 0 && (
@@ -327,7 +315,6 @@ function StepperPage() {
                 flexDirection: "column",
                 justifyContent: "start",
                 alignItems: "baseline",
-                // border: "1px solid green",
               }}
             >
               <Typography variant="h6" color="#2B8CE5" m={4}>
@@ -383,55 +370,28 @@ function StepperPage() {
                   maxWidth: "90%",
                 }}
                 control={
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
-                    {/* <TextField
-                      type="text"
-                      name="projectUrl"
-                      defaultValue="www.test/"
-                      value={projectData.projectUrl}
-                      disabled
-                      sx={{
-                        width: "100px",
-                        my: 2,
-                        color: "#fff",
-                        borderRadius: "10px 0 0 10px",
-                        // border: "1px solid rgba(255, 255, 255, 0.1)",
-                        "& .MuiInputBase-input": {
-                          "&::placeholder": {
-                            color: "#fff",
-                          },
-                        },
-                        ":disabled": {
-                          color: "red",
-                          "&::placeholder": {
-                            color: "#fff",
-                          },
-                        },
-                      }}
-                    /> */}
-                    <TextField
-                      placeholder="Alphaguilty.io/awesomenftpunch"
-                      type="text"
-                      name="projectUrl"
-                      defaultValue={projectData?.projectUrl}
-                      value={projectData.projectUrl}
-                      onChange={handleInputChange}
-                      sx={{
-                        width: "100%",
-                        my: 2,
-                        color: "#fff",
-                        borderRadius: "10px",
-                        border: "1px solid rgba(255, 255, 255, 0.1)",
+                  <TextField
+                    placeholder="Alphaguilty.io/awesomenftpunch"
+                    type="text"
+                    name="projectUrl"
+                    defaultValue={projectData?.projectUrl}
+                    value={projectData.projectUrl}
+                    onChange={handleInputChange}
+                    sx={{
+                      width: "100%",
+                      my: 2,
+                      color: "#fff",
+                      borderRadius: "10px",
+                      border: "1px solid rgba(255, 255, 255, 0.1)",
 
-                        "& .MuiInputBase-input": {
+                      "& .MuiInputBase-input": {
+                        color: "#fff",
+                        "&::placeholder": {
                           color: "#fff",
-                          "&::placeholder": {
-                            color: "#fff",
-                          },
                         },
-                      }}
-                    />
-                  </Box>
+                      },
+                    }}
+                  />
                 }
                 label="Project URL (It cannot be changed after creation)"
                 labelPlacement="start"
@@ -857,9 +817,13 @@ function StepperPage() {
                 <Button
                   onClick={() => navigate("/project")}
                   sx={{
-                    width: "50%",
+                    width: {
+                      xs: "100%",
+                      sm: "100%",
+                      md: "50%",
+                      lg: "50%",
+                    },
                     padding: "13px 24px",
-
                     mt: 5,
                     color: "#101313",
                     bgcolor: "#2B8CE5",
