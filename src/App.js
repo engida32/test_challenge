@@ -1,12 +1,16 @@
-import logo from "./logo.svg";
-import "./App.css";
+import { Box } from "@mui/material";
+import StepperPage from "./components/StepperComponent";
 
 function App() {
   return (
-    <div className="App">
-      <h1>React App</h1>
-      <p> Testing everything </p>
-    </div>
+    <Box
+      sx={{
+        background: "#101313",
+        minHeight: "100vh",
+      }}
+    >
+      <StepperPage />
+    </Box>
   );
 }
 
