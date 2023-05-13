@@ -5,8 +5,8 @@ const ProjectContext = createContext();
 function ProjectProvider(props) {
   const [projectData, setProjectData] = useState({
     projectName: "",
-    projectUrl: "",
-    workerCount: "",
+    projectUrl: "www",
+    workerCount: 4,
     type: "",
     email: "",
     aim: "",

@@ -19,10 +19,11 @@ import {
 } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { ProjectContext } from "../context/projectContex";
+import { useNavigate } from "react-router-dom";
 
 function StepperPage() {
   const [activeStep, setActiveStep] = useState(0);
-
+  const navigate = useNavigate();
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -43,9 +44,14 @@ function StepperPage() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-
-    // Update the projectData object with the new input value
     updateProjectData({ [name]: value });
+  };
+  const incrementWorkerCount = () => {
+    updateProjectData({ workerCount: projectData.workerCount + 1 });
+  };
+
+  const decrementWorkerCount = () => {
+    updateProjectData({ workerCount: projectData.workerCount - 1 });
   };
   const style = {
     color: "#fff",
@@ -336,9 +342,9 @@ function StepperPage() {
                   display: "flex",
                   flexDirection: "column-reverse",
                   justifyContent: "center",
-                  alignContent: "center",
+                  alignContent: "start",
                   alignItems: "start",
-                  width: "90%",
+                  maxWidth: "90%",
                 }}
                 control={
                   <TextField
@@ -348,7 +354,6 @@ function StepperPage() {
                     value={projectData.projectName}
                     onChange={handleInputChange}
                     sx={{
-                      // width: "60%",
                       my: 2,
                       color: "#fff",
                       borderRadius: "10px",
@@ -378,27 +383,55 @@ function StepperPage() {
                   maxWidth: "90%",
                 }}
                 control={
-                  <TextField
-                    placeholder="Alphaguilty.io/awesomenftpunch"
-                    type="text"
-                    name="projectURL"
-                    value={projectData.projectURL}
-                    onChange={handleInputChange}
-                    sx={{
-                      // width: "60%",
-                      my: 2,
-                      color: "#fff",
-                      borderRadius: "10px",
-                      border: "1px solid rgba(255, 255, 255, 0.1)",
-
-                      "& .MuiInputBase-input": {
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    {/* <TextField
+                      type="text"
+                      name="projectUrl"
+                      defaultValue="www.test/"
+                      value={projectData.projectUrl}
+                      disabled
+                      sx={{
+                        width: "100px",
+                        my: 2,
                         color: "#fff",
-                        "&::placeholder": {
-                          color: "#fff",
+                        borderRadius: "10px 0 0 10px",
+                        // border: "1px solid rgba(255, 255, 255, 0.1)",
+                        "& .MuiInputBase-input": {
+                          "&::placeholder": {
+                            color: "#fff",
+                          },
                         },
-                      },
-                    }}
-                  />
+                        ":disabled": {
+                          color: "red",
+                          "&::placeholder": {
+                            color: "#fff",
+                          },
+                        },
+                      }}
+                    /> */}
+                    <TextField
+                      placeholder="Alphaguilty.io/awesomenftpunch"
+                      type="text"
+                      name="projectUrl"
+                      defaultValue={projectData?.projectUrl}
+                      value={projectData.projectUrl}
+                      onChange={handleInputChange}
+                      sx={{
+                        width: "100%",
+                        my: 2,
+                        color: "#fff",
+                        borderRadius: "10px",
+                        border: "1px solid rgba(255, 255, 255, 0.1)",
+
+                        "& .MuiInputBase-input": {
+                          color: "#fff",
+                          "&::placeholder": {
+                            color: "#fff",
+                          },
+                        },
+                      }}
+                    />
+                  </Box>
                 }
                 label="Project URL (It cannot be changed after creation)"
                 labelPlacement="start"
@@ -655,12 +688,12 @@ function StepperPage() {
                     fontSize: "33px",
                     height: "100%",
                   }}
+                  onClick={decrementWorkerCount}
                 >
                   -
                 </Button>
 
                 <TextField
-                  placeholder="4"
                   // disabled
                   type="number"
                   name="workerCount"
@@ -678,6 +711,7 @@ function StepperPage() {
                       },
                     },
                   }}
+                  disabled={projectData.workerCount === 0}
                 />
 
                 <Button
@@ -689,7 +723,7 @@ function StepperPage() {
                     fontSize: "33px",
                     height: "100%",
                   }}
-                  // onClick={handleIncrement}
+                  onClick={incrementWorkerCount}
                 >
                   +
                 </Button>
@@ -821,7 +855,7 @@ function StepperPage() {
                   Back
                 </Button>
                 <Button
-                  onClick={handleNext}
+                  onClick={() => navigate("/project")}
                   sx={{
                     width: "50%",
                     padding: "13px 24px",
