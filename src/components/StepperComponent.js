@@ -17,14 +17,11 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { ProjectContext } from "../context/projectContex";
 
 function StepperPage() {
   const [activeStep, setActiveStep] = useState(0);
-  const [input1, setInput1] = useState("");
-  const [input2, setInput2] = useState("");
-  const [checkboxValue, setCheckboxValue] = useState(false);
-  const [radioValue, setRadioValue] = useState("");
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -34,27 +31,21 @@ function StepperPage() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-    setInput1("");
-    setInput2("");
-    setCheckboxValue(false);
-    setRadioValue("");
-  };
+  // const handleReset = () => {
+  //   setActiveStep(0);
+  //   setInput1("");
+  //   setInput2("");
+  //   setCheckboxValue(false);
+  //   setRadioValue("");
+  // };
 
-  const handleSubmit = () => {
-    // Handle form submission
-  };
+  const { projectData, updateProjectData } = useContext(ProjectContext);
 
-  const [value, setValue] = useState(null);
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
 
-  const handleAutocompleteChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  const handleChipClick = (event) => {
-    const value = event.currentTarget.getAttribute("data-value");
-    setValue(value);
+    // Update the projectData object with the new input value
+    updateProjectData({ [name]: value });
   };
   const style = {
     color: "#fff",
@@ -62,11 +53,6 @@ function StepperPage() {
     borderRadius: "16px",
     border: "1px solid rgba(255, 255, 255, 0.1)",
     p: "13px, 24px, 13px, 24px                 ",
-  };
-  const [radio, setRadio] = useState("");
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
   };
 
   return (
@@ -357,7 +343,10 @@ function StepperPage() {
                 control={
                   <TextField
                     placeholder="Awesome NFT Project"
-                    onChange={(e) => setInput1(e.target.value)}
+                    type="text"
+                    name="projectName"
+                    value={projectData.projectName}
+                    onChange={handleInputChange}
                     sx={{
                       // width: "60%",
                       my: 2,
@@ -391,7 +380,10 @@ function StepperPage() {
                 control={
                   <TextField
                     placeholder="Alphaguilty.io/awesomenftpunch"
-                    onChange={(e) => setInput1(e.target.value)}
+                    type="text"
+                    name="projectURL"
+                    value={projectData.projectURL}
+                    onChange={handleInputChange}
                     sx={{
                       // width: "60%",
                       my: 2,
@@ -497,9 +489,10 @@ function StepperPage() {
                 What is your main goal with AlphaQuest?{" "}
               </Typography>
               <RadioGroup
-                name="radio-buttons-group"
-                value={value}
-                onChange={handleChange}
+                type="text"
+                name="aim"
+                value={projectData.aim}
+                onChange={handleInputChange}
                 sx={{ display: "flex", flexDirection: "column", gap: 1 }}
               >
                 <FormControlLabel
@@ -662,25 +655,26 @@ function StepperPage() {
                     fontSize: "33px",
                     height: "100%",
                   }}
-                  // onClick={handleDecrement}
                 >
                   -
                 </Button>
 
                 <TextField
                   placeholder="4"
-                  onChange={(e) => setInput1(e.target.value)}
-                  disabled
-                  value={input1}
+                  // disabled
+                  type="number"
+                  name="workerCount"
+                  value={projectData.workerCount}
+                  onChange={handleInputChange}
                   sx={{
                     m: 2,
                     color: "white",
                     borderRadius: "10px",
                     border: "1px solid rgba(255, 255, 255, 0.1)",
                     "& .MuiInputBase-input": {
-                      color: "red",
+                      color: "white",
                       "&::placeholder": {
-                        color: "red",
+                        color: "white",
                       },
                     },
                   }}
@@ -711,9 +705,9 @@ function StepperPage() {
                 Are you pre or post product launch?{" "}
               </Typography>
               <RadioGroup
-                name="radio-buttons-group"
-                value={value}
-                onChange={handleChange}
+                name="type"
+                value={projectData.type}
+                onChange={handleInputChange}
                 sx={{ display: "flex", flexDirection: "column", gap: 1 }}
               >
                 <FormControlLabel
@@ -761,7 +755,10 @@ function StepperPage() {
                 control={
                   <TextField
                     placeholder="awesomenft@gmail.com"
-                    onChange={(e) => setInput1(e.target.value)}
+                    type="email"
+                    name="email"
+                    value={projectData.email}
+                    onChange={handleInputChange}
                     sx={{
                       // width: "60%",
                       my: 2,

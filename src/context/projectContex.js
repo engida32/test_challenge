@@ -9,6 +9,7 @@ function ProjectProvider(props) {
     workerCount: "",
     type: "",
     email: "",
+    aim: "",
   });
 
   const updateProjectData = (data) => {
