@@ -12,7 +12,6 @@ import {
   Stack,
   Step,
   StepConnector,
-  StepIcon,
   StepLabel,
   Stepper,
   TextField,
@@ -57,6 +56,18 @@ function StepperPage() {
     const value = event.currentTarget.getAttribute("data-value");
     setValue(value);
   };
+  const style = {
+    color: "#fff",
+    bgcolor: "rgba(250, 250, 250, 0.1)",
+    borderRadius: "16px",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
+    p: "13px, 24px, 13px, 24px                 ",
+  };
+  const [radio, setRadio] = useState("");
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
 
   return (
     <Box>
@@ -87,6 +98,7 @@ function StepperPage() {
             position: "relative",
             overflow: "hidden",
             height: "100vh",
+            borderLeft: "5px solid green",
           }}
         >
           <Stepper activeStep={activeStep} orientation={"vertical"}>
@@ -199,7 +211,6 @@ function StepperPage() {
             justifyContent: "center",
             background: "#101313",
             mx: 2,
-            // make the stepper width  responsive on mobile
             width: {
               xs: "60%",
               sm: "80%",
@@ -260,6 +271,7 @@ function StepperPage() {
                       lg: "block",
                       xl: "block",
                     },
+                    fontSize: "13px",
                   }}
                 >
                   Project Details
@@ -301,213 +313,283 @@ function StepperPage() {
 
         <Grid
           item
-          xs={12}
+          xs={11}
           sm={10}
           sx={{
             my: 5,
             placeSelf: "start",
             mx: "auto",
+            // border: "1px solid yellow",
           }}
         >
           {activeStep === 0 && (
-            <>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "start",
+                alignItems: "baseline",
+                // border: "1px solid green",
+              }}
+            >
+              <Typography variant="h6" color="#2B8CE5" m={4}>
+                To Create Quest you need firstly create Project{" "}
+              </Typography>
+              <Typography variant="h5" color="#fff" mb={2}>
+                Add New Project{" "}
+              </Typography>
+              <FormControlLabel
+                sx={{
+                  color: "#fff",
+                  display: "flex",
+                  flexDirection: "column-reverse",
+                  justifyContent: "center",
+                  alignContent: "center",
+                  alignItems: "start",
+                  width: "90%",
+                }}
+                control={
+                  <TextField
+                    placeholder="Awesome NFT Project"
+                    onChange={(e) => setInput1(e.target.value)}
+                    sx={{
+                      // width: "60%",
+                      my: 2,
+                      color: "#fff",
+                      borderRadius: "10px",
+                      border: "1px solid rgba(255, 255, 255, 0.1)",
+
+                      "& .MuiInputBase-input": {
+                        color: "#fff",
+                        "&::placeholder": {
+                          color: "#fff",
+                        },
+                      },
+                    }}
+                  />
+                }
+                label=" Project Name (It can be changed later)"
+                labelPlacement="start"
+              />
+
+              <FormControlLabel
+                sx={{
+                  color: "#fff",
+                  display: "flex",
+                  flexDirection: "column-reverse",
+                  justifyContent: "center",
+                  alignContent: "start",
+                  alignItems: "start",
+                  maxWidth: "90%",
+                }}
+                control={
+                  <TextField
+                    placeholder="Alphaguilty.io/awesomenftpunch"
+                    onChange={(e) => setInput1(e.target.value)}
+                    sx={{
+                      // width: "60%",
+                      my: 2,
+                      color: "#fff",
+                      borderRadius: "10px",
+                      border: "1px solid rgba(255, 255, 255, 0.1)",
+
+                      "& .MuiInputBase-input": {
+                        color: "#fff",
+                        "&::placeholder": {
+                          color: "#fff",
+                        },
+                      },
+                    }}
+                  />
+                }
+                label="Project URL (It cannot be changed after creation)"
+                labelPlacement="start"
+              />
+              <Typography variant="h6" color="#2B8CE5" m={5}>
+                Project Category (It cannot be changed after creation){" "}
+              </Typography>
+              <Stack
+                direction="row"
+                gap={2}
+                sx={{
+                  flexWrap: "wrap",
+                  alignItems: "center",
+                  justifyContent: "start",
+                  maxWidth: "90%",
+                }}
+              >
+                <Chip label="NFT" sx={style} />
+                <Chip
+                  label="GameFi"
+                  sx={{
+                    color: "#2B8CE5",
+                    bgcolor: "#217AFF1A",
+                    borderRadius: "16px",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                    p: "13px, 24px, 13px, 24px                 ",
+                  }}
+                />
+                <Chip label="DeFi" sx={style} />
+                <Chip label="DAO" sx={style} />
+                <Chip label="SocialFi" sx={style} />
+                <Chip label="Metaverse" sx={style} />
+                <Chip label="Tools" sx={style} />
+                <Chip label="Ecosystem" sx={style} />
+                <Chip label="Others" sx={style} />
+              </Stack>
+              <Button
+                onClick={handleNext}
+                sx={{
+                  width: {
+                    xs: "90%",
+                    sm: "80%",
+                    md: "20%",
+                    lg: "25%",
+                    xl: "25%",
+                  },
+                  mt: 5,
+                  color: "#101313",
+                  bgcolor: "#2B8CE5",
+                  borderRadius: "10px",
+                  border: "1px solid rgba(255, 255, 255, 0.1)",
+                }}
+              >
+                Add Project
+              </Button>
+            </Box>
+          )}
+          {activeStep === 1 && (
+            <Box
+              sx={{
+                m: 2,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-start",
+                alignItems: "start",
+              }}
+            >
+              <Typography
+                mb={4}
+                align="start"
+                sx={{
+                  fontWeight: "400",
+                  fontSize: "20px",
+                  lineHeight: "24px",
+                  color: "#2B8CE6",
+                }}
+              >
+                Project Details{" "}
+              </Typography>
+
+              <Typography
+                sx={{
+                  color: "#fff",
+                  fontWeight: " 500",
+                  fontSize: "32px",
+                  lineHeight: "38px",
+                }}
+              >
+                What is your main goal with AlphaQuest?{" "}
+              </Typography>
+              <RadioGroup
+                name="radio-buttons-group"
+                value={value}
+                onChange={handleChange}
+                sx={{ display: "flex", flexDirection: "column", gap: 3 }}
+              >
+                <FormControlLabel
+                  value="Grow My Community"
+                  control={<Radio sx={{ color: "gray" }} />}
+                  label="Grow My Community"
+                  sx={{
+                    color: "#ffff",
+
+                    borderRadius: "4px",
+                    "&.Mui-checked": {
+                      borderColor: "green",
+                      backgroundColor: "lightgreen",
+                    },
+                  }}
+                />
+                <FormControlLabel
+                  value="Activate Existing Members"
+                  control={<Radio sx={{ color: "gray" }} />}
+                  label="Activate Existing Members"
+                  sx={{
+                    color: "#ffff",
+
+                    borderRadius: "4px",
+                    "&.Mui-checked": {
+                      borderColor: "green",
+                      backgroundColor: "lightgreen",
+                    },
+                  }}
+                />
+                <FormControlLabel
+                  value="Understand My Members"
+                  control={<Radio sx={{ color: "gray" }} />}
+                  label="Understand My Members"
+                  sx={{
+                    color: "#ffff",
+                    borderRadius: "4px",
+                    "&.Mui-checked": {
+                      borderColor: "green",
+                      backgroundColor: "lightgreen",
+                    },
+                  }}
+                />
+                <FormControlLabel
+                  value="Other"
+                  control={<Radio sx={{ color: "gray" }} />}
+                  label="Other"
+                  sx={{
+                    color: "#ffff",
+
+                    borderRadius: "4px",
+                    "&.Mui-checked": {
+                      borderColor: "green",
+                      backgroundColor: "lightgreen",
+                    },
+                  }}
+                />
+              </RadioGroup>
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "start",
-                  alignItems: "baseline",
+                  justifyContent: "space-around",
+                  justifyItems: "flex-start",
+                  alignItems: "flex-start",
+                  padding: "0px",
+                  gap: "32px",
+
+                  width: {
+                    xs: "100%",
+                    sm: "100%",
+                    md: "70%",
+                    lg: "50%",
+                  },
                 }}
               >
-                <Typography variant="h6" color="#2B8CE5" my={4}>
-                  To Create Quest you need firstly create Project{" "}
-                </Typography>
-                <Typography variant="h5" color="#fff" mb={2}>
-                  Add New Project{" "}
-                </Typography>
-                <FormControlLabel
+                <Button
+                  onClick={handleBack}
                   sx={{
-                    color: "#fff",
-                    display: "flex",
-                    flexDirection: "column-reverse",
-                    justifyContent: "center",
-                    alignContent: "center",
-                    alignItems: "start",
-                    width: "90%",
-                  }}
-                  control={
-                    <TextField
-                      placeholder="Awesome NFT Project"
-                      onChange={(e) => setInput1(e.target.value)}
-                      sx={{
-                        width: "60%",
-                        my: 2,
-                        color: "#fff",
-                        borderRadius: "10px",
-                        border: "1px solid rgba(255, 255, 255, 0.1)",
-
-                        "& .MuiInputBase-input": {
-                          color: "#fff",
-                          "&::placeholder": {
-                            color: "#fff",
-                          },
-                        },
-                      }}
-                    />
-                  }
-                  label=" Project Name (It can be changed later)"
-                  labelPlacement="start"
-                />
-                <FormControlLabel
-                  sx={{
-                    color: "#fff",
-                    display: "flex",
-                    flexDirection: "column-reverse",
-                    justifyContent: "center",
-                    alignContent: "start",
-                    alignItems: "start",
-                    width: "90%",
-                  }}
-                  control={
-                    <TextField
-                      placeholder="Alphaguilty.io/awesomenftpunch"
-                      onChange={(e) => setInput1(e.target.value)}
-                      sx={{
-                        width: "60%",
-                        my: 2,
-                        color: "#fff",
-                        borderRadius: "10px",
-                        border: "1px solid rgba(255, 255, 255, 0.1)",
-
-                        "& .MuiInputBase-input": {
-                          color: "#fff",
-                          "&::placeholder": {
-                            color: "#fff",
-                          },
-                        },
-                      }}
-                    />
-                  }
-                  label="Project URL (It cannot be changed after creation)"
-                  labelPlacement="start"
-                />
-                <Box>
-                  <Typography variant="h6" color="#2B8CE5" my={5}>
-                    Project Category (It cannot be changed after creation){" "}
-                  </Typography>
-                </Box>
-                <Stack
-                  direction="row"
-                  gap={2}
-                  sx={{
-                    flexWrap: "wrap",
-                    alignItems: "center",
-                    justifyContent: "start",
-                    width: "100%",
+                    maxWidth: "50%",
+                    mt: 5,
+                    padding: "13px 34px",
+                    color: "#FAFAFA",
+                    background: "rgba(250, 250, 250, 0.1) ",
+                    borderRadius: "10px",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
                   }}
                 >
-                  <Chip
-                    label="NFT"
-                    sx={{
-                      color: "#fff",
-                      bgcolor: "rgba(250, 250, 250, 0.1)",
-                      borderRadius: "16px",
-                      border: "1px solid rgba(255, 255, 255, 0.1)",
-                      p: "13px, 24px, 13px, 24px                 ",
-                    }}
-                  />
-                  <Chip
-                    label="GameFi"
-                    sx={{
-                      color: "#2B8CE5",
-                      bgcolor: "#217AFF1A",
-                      borderRadius: "16px",
-                      border: "1px solid rgba(255, 255, 255, 0.1)",
-                      p: "13px, 24px, 13px, 24px                 ",
-                    }}
-                  />
-                  <Chip
-                    label="DeFi"
-                    sx={{
-                      color: "#fff",
-                      bgcolor: "rgba(250, 250, 250, 0.1)",
-                      borderRadius: "16px",
-                      border: "1px solid rgba(255, 255, 255, 0.1)",
-                      p: "13px, 24px, 13px, 24px                 ",
-                    }}
-                  />
-                  <Chip
-                    label="DAO"
-                    sx={{
-                      color: "#fff",
-                      bgcolor: "rgba(250, 250, 250, 0.1)",
-                      borderRadius: "16px",
-                      border: "1px solid rgba(255, 255, 255, 0.1)",
-                      p: "13px, 24px, 13px, 24px                 ",
-                    }}
-                  />
-                  <Chip
-                    label="SocialFi"
-                    sx={{
-                      color: "#fff",
-                      bgcolor: "rgba(250, 250, 250, 0.1)",
-                      borderRadius: "16px",
-                      border: "1px solid rgba(255, 255, 255, 0.1)",
-                      p: "13px, 24px, 13px, 24px                 ",
-                    }}
-                  />
-                  <Chip
-                    label="Metaverse"
-                    sx={{
-                      color: "#fff",
-                      bgcolor: "rgba(250, 250, 250, 0.1)",
-                      borderRadius: "16px",
-                      border: "1px solid rgba(255, 255, 255, 0.1)",
-                      p: "13px, 24px, 13px, 24px                 ",
-                    }}
-                  />
-                  <Chip
-                    label="Tools"
-                    sx={{
-                      color: "#fff",
-                      bgcolor: "rgba(250, 250, 250, 0.1)",
-                      borderRadius: "16px",
-                      border: "1px solid rgba(255, 255, 255, 0.1)",
-                      p: "13px, 24px, 13px, 24px                 ",
-                    }}
-                  />
-
-                  <Chip
-                    label="Ecosystem"
-                    sx={{
-                      color: "#fff",
-                      bgcolor: "rgba(250, 250, 250, 0.1)",
-                      borderRadius: "16px",
-                      border: "1px solid rgba(255, 255, 255, 0.1)",
-                      p: "13px, 24px, 13px, 24px                 ",
-                    }}
-                  />
-                  <Chip
-                    label="Others"
-                    sx={{
-                      color: "#fff",
-                      bgcolor: "rgba(250, 250, 250, 0.1)",
-                      borderRadius: "16px",
-                      border: "1px solid rgba(255, 255, 255, 0.1)",
-                      p: "13px, 24px, 13px, 24px                 ",
-                    }}
-                  />
-                </Stack>
+                  Back
+                </Button>
                 <Button
                   onClick={handleNext}
                   sx={{
-                    width: {
-                      xs: "98%",
-                      sm: "80%",
-                      md: "20%",
-                      lg: "25%",
-                      xl: "25%",
-                    },
+                    width: "50%",
+                    padding: "13px 24px",
+
                     mt: 5,
                     color: "#101313",
                     bgcolor: "#2B8CE5",
@@ -515,35 +597,9 @@ function StepperPage() {
                     border: "1px solid rgba(255, 255, 255, 0.1)",
                   }}
                 >
-                  Add Project{" "}
+                  Add Project
                 </Button>
               </Box>
-            </>
-          )}
-          {activeStep === 1 && (
-            <Box
-              sx={{
-                width: "60%",
-                my: 2,
-              }}
-            >
-              <TextField
-                label="Input 2"
-                value={input2}
-                onChange={(e) => setInput2(e.target.value)}
-              />
-              <FormControlLabel
-                sx={{ color: "#000" }}
-                control={
-                  <Checkbox
-                    checked={checkboxValue}
-                    onChange={(e) => setCheckboxValue(e.target.checked)}
-                  />
-                }
-                label="Checkbox"
-              />
-              <Button onClick={handleBack}>Back</Button>
-              <Button onClick={handleNext}>Next</Button>
             </Box>
           )}
           {activeStep === 2 && (
