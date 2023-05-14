@@ -113,7 +113,7 @@ function StepperPage() {
                 StepIconProps={{ active: activeStep >= 2 }}
               >
                 <QontoTypography variant="h6" active={activeStep >= 2}>
-                  Project Details
+                  Create Project
                 </QontoTypography>
               </StepLabel>
             </Step>
