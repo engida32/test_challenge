@@ -68,6 +68,7 @@ function StepperPage() {
       sx={{
         border: "1px solid ",
         minHeight: "100vh",
+        overflowY: "clip",
       }}
     >
       <Grid
