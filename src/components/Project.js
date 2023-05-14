@@ -53,12 +53,15 @@ function ProjectPage() {
       >
         <Typography
           variant="h4"
-          sx={{ color: "#EF6C00", marginBottom: "2rem" }}
+          sx={{
+            color: "#EF6C00",
+            marginBottom: "2rem",
+          }}
         >
           <Box
             sx={{
               display: "inline-block",
-              padding: "2rem 2rem",
+              padding: "3rem",
               boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.3)",
               transition: "box-shadow 0.3s ease-in-out",
               "&:hover": {
@@ -67,7 +70,7 @@ function ProjectPage() {
               },
             }}
           >
-            {projectData.projectName}
+            {(projectData.projectName, " test")}
           </Box>
         </Typography>
 

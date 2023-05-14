@@ -3,13 +3,13 @@ import StepperPage from "./components/StepperComponent";
 import { ProjectContext, ProjectProvider } from "./context/projectContex";
 import { useContext } from "react";
 import ProjectCard from "./components/Project";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   const { projectData, updateProjectData } = useContext(ProjectContext);
   console.log({ projectData });
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Box
         sx={{
           background: "#101313",
@@ -21,7 +21,7 @@ function App() {
           <Route path="/project" element={<ProjectCard />} />
         </Routes>
       </Box>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
