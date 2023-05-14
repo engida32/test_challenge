@@ -1,4 +1,3 @@
-import { Circle } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -9,13 +8,10 @@ import {
   RadioGroup,
   Stack,
   Step,
-  StepConnector,
   StepLabel,
   Stepper,
   TextField,
   Typography,
-  stepConnectorClasses,
-  styled,
 } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { ProjectContext } from "../context/projectContex";
@@ -24,6 +20,7 @@ import {
   QontoConnector,
   QontoStepIcon,
   QontoTypography,
+  VQontoConnector,
   style,
 } from "../style/style";
 
@@ -51,45 +48,6 @@ function StepperPage() {
   const decrementWorkerCount = () => {
     updateProjectData({ workerCount: projectData.workerCount - 1 });
   };
-  // const style = {
-  //   color: "#fff",
-  //   bgcolor: "rgba(250, 250, 250, 0.1)",
-  //   borderRadius: "16px",
-  //   border: "1px solid rgba(255, 255, 255, 0.1)",
-  //   p: "13px, 24px, 13px, 24px                 ",
-  // };
-
-  // const QontoConnector = styled(StepConnector)(({ theme }) => ({
-  //   [`&.${stepConnectorClasses.alternativeLabel}`]: {
-  //     top: 10,
-  //     left: "calc(-50% + 16px)",
-  //     right: "calc(50% + 16px)",
-  //   },
-  //   [`&.${stepConnectorClasses.active}`]: {
-  //     [`& .${stepConnectorClasses.line}`]: {
-  //       borderColor: "#2B8CE6",
-  //     },
-  //   },
-  //   [`&.${stepConnectorClasses.completed}`]: {
-  //     [`& .${stepConnectorClasses.line}`]: {
-  //       borderColor: "#2B8CE6",
-  //     },
-  //   },
-  //   [`& .${stepConnectorClasses.line}`]: {
-  //     borderColor:
-  //       theme.palette.mode === "dark" ? theme.palette.grey[800] : "#eaeaf0",
-  //     borderTopWidth: 3,
-  //     borderRadius: 1,
-  //   },
-  // }));
-
-  // const QontoStepIcon = styled(Circle)(({ theme, active }) => ({
-  //   color: active ? "#2B8CE6" : "gray",
-  // }));
-
-  // const QontoTypography = styled(Typography)(({ active }) => ({
-  //   color: active ? "#2B8CE6" : "gray",
-  // }));
   return (
     <Box
       sx={{
@@ -119,8 +77,6 @@ function StepperPage() {
             },
             background: "#101313",
             boxShadow: "1px 0px 0px #2D3232",
-            // pl: 5,
-            // width: "100%",
             position: "relative",
             overflow: "clip",
             borderTopLeftRadius: "5px solid green",
@@ -128,7 +84,7 @@ function StepperPage() {
         >
           <Stepper
             activeStep={activeStep}
-            connector={<QontoConnector />}
+            connector={<VQontoConnector />}
             orientation="vertical"
           >
             <Step>
@@ -359,7 +315,7 @@ function StepperPage() {
                   justifyContent: "center",
                   alignContent: "start",
                   alignItems: "start",
-                  maxWidth: "100%",
+                  maxWidth: "90%",
                 }}
                 control={
                   <TextField
@@ -646,7 +602,6 @@ function StepperPage() {
                 </Button>
 
                 <TextField
-                  // disabled
                   type="number"
                   name="workerCount"
                   value={projectData.workerCount}
@@ -746,7 +701,6 @@ function StepperPage() {
                     value={projectData.email}
                     onChange={handleInputChange}
                     sx={{
-                      // width: "60%",
                       my: 2,
                       color: "#fff",
                       borderRadius: "10px",
