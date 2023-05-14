@@ -62,7 +62,7 @@ function StepperPage() {
       setSelectedChips((chips) => [...chips, chip]);
     }
   };
-  console.log(selectedChips);
+
   return (
     <Box
       sx={{
@@ -376,7 +376,6 @@ function StepperPage() {
                   <Chip
                     key={index}
                     label={data.label}
-                    // value={data.value}
                     sx={
                       selectedChips.some(
                         (selected) => selected.value === data.value
@@ -385,6 +384,7 @@ function StepperPage() {
                         : { ...style }
                     }
                     onClick={() => {
+                      updateProjectData({ category: selectedChips });
                       handleChipClick(data);
                     }}
                   />

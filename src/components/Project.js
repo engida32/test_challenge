@@ -1,5 +1,13 @@
 import React, { useContext } from "react";
-import { Container, Paper, Typography, Box, Button } from "@mui/material";
+import {
+  Container,
+  Paper,
+  Typography,
+  Box,
+  Button,
+  Stack,
+  Chip,
+} from "@mui/material";
 import { ProjectContext } from "../context/projectContex";
 
 function ProjectPage() {
@@ -135,6 +143,34 @@ function ProjectPage() {
           <Typography variant="body1" gutterBottom sx={{ color: "#101313" }}>
             {projectData.email}
           </Typography>
+          <Typography variant="h6" gutterBottom sx={{ color: "#F9A825" }}>
+            {" "}
+            Category
+          </Typography>
+          <Stack
+            direction="row"
+            gap={2}
+            sx={{
+              flexWrap: "wrap",
+              alignItems: "center",
+              justifyContent: "center",
+              maxWidth: "90%",
+            }}
+          >
+            {projectData.category.map((data, index) => (
+              <Chip
+                key={index}
+                label={data.label}
+                sx={{
+                  backgroundColor: "#101313",
+                  color: "#fff",
+                  borderRadius: "10px",
+                  my: "0.5rem",
+                  border: "1px solid rgba(255, 255, 255, 0.1)",
+                }}
+              />
+            ))}
+          </Stack>
         </Box>
         <Button
           variant="contained"

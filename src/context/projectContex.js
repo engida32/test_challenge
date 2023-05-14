@@ -10,6 +10,7 @@ function ProjectProvider(props) {
     type: "",
     email: "",
     aim: "",
+    category: [],
   });
 
   const updateProjectData = (data) => {
