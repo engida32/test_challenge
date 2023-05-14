@@ -160,7 +160,11 @@ function ProjectPage() {
           <Typography variant="body1" gutterBottom sx={{ color: "#101313" }}>
             {projectData.email}
           </Typography>
-          <Typography variant="h6" gutterBottom sx={{ color: "#F9A825" }}>
+          <Typography
+            variant="h6"
+            gutterBottom
+            sx={{ mt: 2, color: "#F9A825" }}
+          >
             Category
           </Typography>
           <Stack
@@ -171,6 +175,7 @@ function ProjectPage() {
               alignItems: "center",
               justifyContent: "center",
               maxWidth: "100%",
+              my: 2,
             }}
           >
             {projectData.category.map((data, index) => (
