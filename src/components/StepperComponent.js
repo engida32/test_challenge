@@ -67,21 +67,21 @@ function StepperPage() {
     <Box
       sx={{
         border: "1px solid ",
-        minHeight: "100%",
+        minHeight: "100vh",
       }}
     >
       <Grid
         container
         spacing={3}
         sx={{
-          background: "#101313",
           minHeight: "100vh",
+          background: "#101313",
         }}
       >
         <Grid
           item
           xs={12}
-          sm={2}
+          sm={2.5}
           sx={{
             display: {
               xs: "none",
@@ -93,8 +93,9 @@ function StepperPage() {
             background: "#101313",
             boxShadow: "1px 0px 0px #2D3232",
             position: "relative",
-            overflow: "clip",
-            borderTopLeftRadius: "5px solid green",
+            overflowX: "clip",
+            borderLeft: "5px solid green",
+            mt: 5,
           }}
         >
           <Stepper
@@ -262,8 +263,8 @@ function StepperPage() {
 
         <Grid
           item
-          xs={11}
-          sm={10}
+          xs={10}
+          sm={9.5}
           sx={{
             my: 5,
             placeSelf: "start",
