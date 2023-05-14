@@ -42,6 +42,7 @@ function ProjectPage() {
           backgroundColor: "rgba(255, 255, 255, 0.9)",
           padding: "2rem",
           textAlign: "center",
+          color: "#101313",
           boxShadow:
             "0px 10px 20px rgba(0, 0, 0, 0.3), 0px 6px 6px rgba(0, 0, 0, 0.2)",
           transition: "box-shadow 0.3s ease-in-out",
@@ -147,7 +148,6 @@ function ProjectPage() {
             {projectData.email}
           </Typography>
           <Typography variant="h6" gutterBottom sx={{ color: "#F9A825" }}>
-            {" "}
             Category
           </Typography>
           <Stack
@@ -166,7 +166,7 @@ function ProjectPage() {
                 label={data.label}
                 sx={{
                   backgroundColor: "#101313",
-                  color: "#fff",
+                  color: "#F9A825",
                   borderRadius: "10px",
                   my: "0.5rem",
                   border: "1px solid rgba(255, 255, 255, 0.1)",
