@@ -610,6 +610,7 @@ function StepperPage() {
                     fontSize: "33px",
                     height: "100%",
                   }}
+                  disabled={projectData.workerCount === 0}
                   onClick={decrementWorkerCount}
                 >
                   -
@@ -632,7 +633,6 @@ function StepperPage() {
                       },
                     },
                   }}
-                  disabled={projectData.workerCount === 0}
                 />
 
                 <Button
