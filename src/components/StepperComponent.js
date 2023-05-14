@@ -23,9 +23,12 @@ import {
   VQontoConnector,
   style,
 } from "../style/style";
+import { chipsList } from "../utils/data";
 
 function StepperPage() {
   const [activeStep, setActiveStep] = useState(0);
+  const [selectedChips, setSelectedChips] = useState([]);
+
   const navigate = useNavigate();
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -48,6 +51,18 @@ function StepperPage() {
   const decrementWorkerCount = () => {
     updateProjectData({ workerCount: projectData.workerCount - 1 });
   };
+
+  const handleChipClick = (chip) => {
+    console.log("Selected chip:", chip);
+    if (selectedChips.some((selected) => selected.value === chip.value)) {
+      setSelectedChips((chips) =>
+        chips.filter((selected) => selected.value !== chip.value)
+      );
+    } else {
+      setSelectedChips((chips) => [...chips, chip]);
+    }
+  };
+  console.log(selectedChips);
   return (
     <Box
       sx={{
@@ -357,24 +372,23 @@ function StepperPage() {
                   maxWidth: "90%",
                 }}
               >
-                <Chip label="NFT" sx={style} />
-                <Chip
-                  label="GameFi"
-                  sx={{
-                    color: "#2B8CE5",
-                    bgcolor: "#217AFF1A",
-                    borderRadius: "16px",
-                    border: "1px solid rgba(255, 255, 255, 0.1)",
-                    p: "13px, 24px, 13px, 24px                 ",
-                  }}
-                />
-                <Chip label="DeFi" sx={style} />
-                <Chip label="DAO" sx={style} />
-                <Chip label="SocialFi" sx={style} />
-                <Chip label="Metaverse" sx={style} />
-                <Chip label="Tools" sx={style} />
-                <Chip label="Ecosystem" sx={style} />
-                <Chip label="Others" sx={style} />
+                {chipsList.map((data, index) => (
+                  <Chip
+                    key={index}
+                    label={data.label}
+                    // value={data.value}
+                    sx={
+                      selectedChips.some(
+                        (selected) => selected.value === data.value
+                      )
+                        ? { color: "#2B8CE5", bgcolor: "#217AFF1A" }
+                        : { ...style }
+                    }
+                    onClick={() => {
+                      handleChipClick(data);
+                    }}
+                  />
+                ))}
               </Stack>
               <Button
                 onClick={handleNext}
