@@ -15,6 +15,7 @@ function ProjectPage() {
       aim: "",
     });
   };
+
   return (
     <Container
       maxWidth="md"
@@ -49,7 +50,7 @@ function ProjectPage() {
           <Box
             sx={{
               display: "inline-block",
-              padding: "1rem 2rem",
+              padding: "2rem 2rem",
               boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.3)",
               transition: "box-shadow 0.3s ease-in-out",
               "&:hover": {
@@ -100,7 +101,7 @@ function ProjectPage() {
           }}
         >
           <Typography variant="h6" gutterBottom sx={{ color: "#F9A825" }}>
-            Aim
+            Your Aim
           </Typography>
           <Typography variant="body1" gutterBottom sx={{ color: "#101313" }}>
             {projectData.aim}
@@ -114,7 +115,7 @@ function ProjectPage() {
           }}
         >
           <Typography variant="h6" gutterBottom sx={{ color: "#F9A825" }}>
-            Type
+            Project Type
           </Typography>
           <Typography variant="body1" gutterBottom sx={{ color: "#101313" }}>
             {projectData.type}
@@ -137,15 +138,26 @@ function ProjectPage() {
         </Box>
         <Button
           variant="contained"
-          color="primary"
-          sx={{ marginBottom: "2rem" }}
+          sx={{
+            marginBottom: "2rem",
+            color: "#101313",
+            backgroundColor: "rgba(255, 0, 0, 0.1)",
+            boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.3)",
+            transition: "box-shadow 0.3s ease-in-out",
+            "&:hover": {
+              boxShadow: "0px 20px 30px rgba(0, 0, 0, 0.4)",
+            },
+
+            borderRadius: "10px",
+            border: "1px solid rgba(255, 255, 255, 0.1)",
+            p: 2,
+          }}
           onClick={() => {
             window.history.back();
             handleReset();
           }}
         >
-          {" "}
-          Back{" "}
+          Reset and Back{" "}
         </Button>
       </Paper>
     </Container>

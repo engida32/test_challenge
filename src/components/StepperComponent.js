@@ -9,14 +9,23 @@ import {
   RadioGroup,
   Stack,
   Step,
+  StepConnector,
   StepLabel,
   Stepper,
   TextField,
   Typography,
+  stepConnectorClasses,
+  styled,
 } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { ProjectContext } from "../context/projectContex";
 import { useNavigate } from "react-router-dom";
+import {
+  QontoConnector,
+  QontoStepIcon,
+  QontoTypography,
+  style,
+} from "../style/style";
 
 function StepperPage() {
   const [activeStep, setActiveStep] = useState(0);
@@ -42,14 +51,45 @@ function StepperPage() {
   const decrementWorkerCount = () => {
     updateProjectData({ workerCount: projectData.workerCount - 1 });
   };
-  const style = {
-    color: "#fff",
-    bgcolor: "rgba(250, 250, 250, 0.1)",
-    borderRadius: "16px",
-    border: "1px solid rgba(255, 255, 255, 0.1)",
-    p: "13px, 24px, 13px, 24px                 ",
-  };
+  // const style = {
+  //   color: "#fff",
+  //   bgcolor: "rgba(250, 250, 250, 0.1)",
+  //   borderRadius: "16px",
+  //   border: "1px solid rgba(255, 255, 255, 0.1)",
+  //   p: "13px, 24px, 13px, 24px                 ",
+  // };
 
+  // const QontoConnector = styled(StepConnector)(({ theme }) => ({
+  //   [`&.${stepConnectorClasses.alternativeLabel}`]: {
+  //     top: 10,
+  //     left: "calc(-50% + 16px)",
+  //     right: "calc(50% + 16px)",
+  //   },
+  //   [`&.${stepConnectorClasses.active}`]: {
+  //     [`& .${stepConnectorClasses.line}`]: {
+  //       borderColor: "#2B8CE6",
+  //     },
+  //   },
+  //   [`&.${stepConnectorClasses.completed}`]: {
+  //     [`& .${stepConnectorClasses.line}`]: {
+  //       borderColor: "#2B8CE6",
+  //     },
+  //   },
+  //   [`& .${stepConnectorClasses.line}`]: {
+  //     borderColor:
+  //       theme.palette.mode === "dark" ? theme.palette.grey[800] : "#eaeaf0",
+  //     borderTopWidth: 3,
+  //     borderRadius: 1,
+  //   },
+  // }));
+
+  // const QontoStepIcon = styled(Circle)(({ theme, active }) => ({
+  //   color: active ? "#2B8CE6" : "gray",
+  // }));
+
+  // const QontoTypography = styled(Typography)(({ active }) => ({
+  //   color: active ? "#2B8CE6" : "gray",
+  // }));
   return (
     <Box
       sx={{
@@ -86,68 +126,39 @@ function StepperPage() {
             borderTopLeftRadius: "5px solid green",
           }}
         >
-          <Stepper activeStep={activeStep} orientation={"vertical"}>
+          <Stepper
+            activeStep={activeStep}
+            connector={<QontoConnector />}
+            orientation="vertical"
+          >
             <Step>
               <StepLabel
-                StepIconProps={{
-                  icon: (
-                    <Circle
-                      fontSize="large"
-                      sx={{
-                        color: activeStep === 0 ? "white" : "gray",
-                      }}
-                    />
-                  ),
-                }}
+                StepIconComponent={QontoStepIcon}
+                StepIconProps={{ active: activeStep >= 0 }}
               >
-                <Typography
-                  variant="h6"
-                  color={activeStep === 0 ? "white" : "gray"}
-                >
+                <QontoTypography variant="h6" active={activeStep >= 0}>
                   Start First Project
-                </Typography>
+                </QontoTypography>
               </StepLabel>
             </Step>
             <Step>
               <StepLabel
-                StepIconProps={{
-                  icon: (
-                    <Circle
-                      fontSize="large"
-                      sx={{
-                        color: activeStep === 1 ? "white" : "gray",
-                      }}
-                    />
-                  ),
-                }}
+                StepIconComponent={QontoStepIcon}
+                StepIconProps={{ active: activeStep >= 1 }}
               >
-                <Typography
-                  variant="h6"
-                  color={activeStep === 1 ? "white" : "gray"}
-                >
+                <QontoTypography variant="h6" active={activeStep >= 1}>
                   Project Details
-                </Typography>
+                </QontoTypography>
               </StepLabel>
             </Step>
             <Step>
               <StepLabel
-                StepIconProps={{
-                  icon: (
-                    <Circle
-                      fontSize="large"
-                      sx={{
-                        color: activeStep === 2 ? "white" : "gray",
-                      }}
-                    />
-                  ),
-                }}
+                StepIconComponent={QontoStepIcon}
+                StepIconProps={{ active: activeStep >= 2 }}
               >
-                <Typography
-                  variant="h6"
-                  color={activeStep === 2 ? "white" : "gray"}
-                >
+                <QontoTypography variant="h6" active={activeStep >= 2}>
                   Project Details
-                </Typography>
+                </QontoTypography>
               </StepLabel>
             </Step>
           </Stepper>
@@ -204,19 +215,15 @@ function StepperPage() {
             },
           }}
         >
-          <Stepper activeStep={activeStep} orientation={"horizontal"}>
+          <Stepper
+            activeStep={activeStep}
+            connector={<QontoConnector />}
+            orientation={"horizontal"}
+          >
             <Step>
               <StepLabel
-                StepIconProps={{
-                  icon: (
-                    <Circle
-                      fontSize="large"
-                      sx={{
-                        color: activeStep === 0 ? "white" : "gray",
-                      }}
-                    />
-                  ),
-                }}
+                StepIconComponent={QontoStepIcon}
+                StepIconProps={{ active: activeStep >= 0 }}
               >
                 <Typography
                   variant="h6"
@@ -237,16 +244,8 @@ function StepperPage() {
             </Step>
             <Step>
               <StepLabel
-                StepIconProps={{
-                  icon: (
-                    <Circle
-                      fontSize="large"
-                      sx={{
-                        color: activeStep === 1 ? "white" : "gray",
-                      }}
-                    />
-                  ),
-                }}
+                StepIconComponent={QontoStepIcon}
+                StepIconProps={{ active: activeStep >= 1 }}
               >
                 <Typography
                   color={activeStep === 1 ? "white" : "gray"}
@@ -267,16 +266,8 @@ function StepperPage() {
             </Step>
             <Step>
               <StepLabel
-                StepIconProps={{
-                  icon: (
-                    <Circle
-                      fontSize="large"
-                      sx={{
-                        color: activeStep === 2 ? "white" : "gray",
-                      }}
-                    />
-                  ),
-                }}
+                StepIconComponent={QontoStepIcon}
+                StepIconProps={{ active: activeStep >= 2 }}
               >
                 <Typography
                   variant="h6"
@@ -305,7 +296,6 @@ function StepperPage() {
           sx={{
             my: 5,
             placeSelf: "start",
-            mx: "auto",
           }}
         >
           {activeStep === 0 && (
@@ -335,12 +325,13 @@ function StepperPage() {
                 }}
                 control={
                   <TextField
-                    placeholder="Awesome NFT Project"
+                    placeholder="Awesome NFT Project "
                     type="text"
                     name="projectName"
                     value={projectData.projectName}
                     onChange={handleInputChange}
                     sx={{
+                      width: "100%",
                       my: 2,
                       color: "#fff",
                       borderRadius: "10px",
@@ -348,6 +339,7 @@ function StepperPage() {
 
                       "& .MuiInputBase-input": {
                         color: "#fff",
+                        width: "100%",
                         "&::placeholder": {
                           color: "#fff",
                         },
@@ -355,7 +347,7 @@ function StepperPage() {
                     }}
                   />
                 }
-                label=" Project Name (It can be changed later)"
+                label={` Project Name (It can be changed later)  `}
                 labelPlacement="start"
               />
 
@@ -367,12 +359,12 @@ function StepperPage() {
                   justifyContent: "center",
                   alignContent: "start",
                   alignItems: "start",
-                  maxWidth: "90%",
+                  maxWidth: "100%",
                 }}
                 control={
                   <TextField
                     placeholder="Alphaguilty.io/awesomenftpunch"
-                    type="text"
+                    type="url"
                     name="projectUrl"
                     defaultValue={projectData?.projectUrl}
                     value={projectData.projectUrl}
@@ -396,7 +388,7 @@ function StepperPage() {
                 label="Project URL (It cannot be changed after creation)"
                 labelPlacement="start"
               />
-              <Typography variant="h6" color="#2B8CE5" m={5}>
+              <Typography variant="h6" color="#fff" m={5}>
                 Project Category (It cannot be changed after creation){" "}
               </Typography>
               <Stack
