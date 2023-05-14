@@ -53,6 +53,18 @@ function ProjectPage() {
         }}
       >
         <Typography
+          variant="h5"
+          gutterBottom
+          sx={{
+            color: "#F9A825",
+            marginBottom: "2rem",
+            borderBottom: "1px solid #F9A825",
+          }}
+        >
+          {" "}
+          Project Details{" "}
+        </Typography>
+        <Typography
           variant="h4"
           sx={{
             color: "#EF6C00",
@@ -62,8 +74,9 @@ function ProjectPage() {
           <Box
             sx={{
               display: "inline-block",
-              padding: "3rem",
-              boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.3)",
+              px: "3rem",
+              py: "1rem",
+              boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.2)",
               transition: "box-shadow 0.3s ease-in-out",
               "&:hover": {
                 boxShadow:
@@ -157,7 +170,7 @@ function ProjectPage() {
               flexWrap: "wrap",
               alignItems: "center",
               justifyContent: "center",
-              maxWidth: "90%",
+              maxWidth: "100%",
             }}
           >
             {projectData.category.map((data, index) => (
