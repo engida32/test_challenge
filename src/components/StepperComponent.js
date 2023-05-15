@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Chip,
+  Container,
   FormControlLabel,
   Grid,
   Radio,
@@ -149,7 +150,7 @@ function StepperPage() {
                 borderRadius: "50%",
                 width: "100%",
                 border: "1px solid #2D3232",
-                height: "240px",
+                height: "210px",
                 position: "absolute",
                 bottom: -150,
                 left: 0,
@@ -361,7 +362,7 @@ function StepperPage() {
                 label="Project URL (It cannot be changed after creation)"
                 labelPlacement="start"
               />
-              <Typography variant="h6" color="#fff" m={5}>
+              <Typography variant="h7" color="#fff" m={5}>
                 Project Category (It cannot be changed after creation){" "}
               </Typography>
               <Stack
@@ -416,41 +417,56 @@ function StepperPage() {
           {activeStep === 1 && (
             <Box
               sx={{
-                m: 2,
+                mx: 2,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "flex-start",
-                alignItems: "start",
+                alignItems: {
+                  xs: "center",
+                  sm: "center",
+                  md: "flex-start",
+                  lg: "flex-start",
+                },
+                minWidth: "100%",
               }}
             >
-              <Typography
-                mb={4}
-                align="start"
-                sx={{
-                  fontWeight: "400",
-                  fontSize: "20px",
-                  lineHeight: "24px",
-                  color: "#2B8CE6",
-                }}
-              >
-                Project Details{" "}
-              </Typography>
+              <Box>
+                <Typography
+                  mb={4}
+                  align="start"
+                  sx={{
+                    fontWeight: "400",
+                    fontSize: "20px",
+                    lineHeight: "24px",
+                    color: "#2B8CE6",
+                  }}
+                >
+                  Project Details{" "}
+                </Typography>
 
-              <Typography
-                sx={{
-                  color: "#fff",
-                  fontWeight: 500,
-                  fontSize: "32px",
-                }}
-              >
-                What is your main goal with AlphaQuest?{" "}
-              </Typography>
+                <Typography
+                  align="start"
+                  sx={{
+                    color: "#fff",
+                    fontWeight: 500,
+                    fontSize: "32px",
+                  }}
+                >
+                  What is your main goal with AlphaQuest?{" "}
+                </Typography>
+              </Box>
               <RadioGroup
                 type="text"
                 name="aim"
                 value={projectData.aim}
                 onChange={handleInputChange}
-                sx={{ display: "flex", flexDirection: "column", gap: 1 }}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 1,
+                  justifyContent: "flex-start",
+                  width: "100%",
+                }}
               >
                 <FormControlLabel
                   value="Grow My Community"
@@ -511,7 +527,7 @@ function StepperPage() {
               <Box
                 sx={{
                   display: "flex",
-                  justifyContent: "space-around",
+                  justifyContent: "space-between",
                   justifyItems: "flex-start",
                   alignItems: "flex-start",
                   padding: "0px",
@@ -532,9 +548,10 @@ function StepperPage() {
                     mt: 5,
                     padding: "13px 34px",
                     color: "#FAFAFA",
-                    background: "rgba(250, 250, 250, 0.1) ",
                     borderRadius: "10px",
                     border: "1px solid rgba(255, 255, 255, 0.1)",
+                    backgroundColor: "#454545",
+                    backdropFilter: "blur(10px)",
                   }}
                 >
                   Back
@@ -542,9 +559,13 @@ function StepperPage() {
                 <Button
                   onClick={handleNext}
                   sx={{
-                    width: "50%",
+                    width: {
+                      xs: "100%",
+                      sm: "100%",
+                      md: "60%",
+                      lg: "50%",
+                    },
                     padding: "13px 24px",
-
                     mt: 5,
                     color: "#101313",
                     bgcolor: "#2B8CE5",
@@ -552,7 +573,7 @@ function StepperPage() {
                     border: "1px solid rgba(255, 255, 255, 0.1)",
                   }}
                 >
-                  Add Project
+                  Continue{" "}
                 </Button>
               </Box>
             </Box>
@@ -565,6 +586,7 @@ function StepperPage() {
                 flexDirection: "column",
                 justifyContent: "flex-start",
                 alignItems: "start",
+                width: "100%",
               }}
             >
               <Box>
@@ -596,10 +618,11 @@ function StepperPage() {
                   width: {
                     xs: "100%",
                     sm: "100%",
-                    md: "50%",
-                    lg: "40%",
+                    md: "30%",
+                    lg: "20%",
                   },
                   justifyContent: "space-around",
+                  alignContent: "flex-start",
                   alignItems: "center",
                 }}
               >
@@ -610,7 +633,7 @@ function StepperPage() {
                     background: "rgba(250, 250, 250, 0.1)",
                     backdropFilter: "blur(10px)",
                     fontSize: "33px",
-                    height: "100%",
+                    height: "80%",
                   }}
                   disabled={projectData.workerCount === 0}
                   onClick={decrementWorkerCount}
@@ -627,6 +650,8 @@ function StepperPage() {
                     m: 2,
                     color: "white",
                     borderRadius: "10px",
+                    width: "50%",
+
                     border: "1px solid rgba(255, 255, 255, 0.1)",
                     "& .MuiInputBase-input": {
                       color: "white",
@@ -644,7 +669,7 @@ function StepperPage() {
                     background: "rgba(250, 250, 250, 0.1)",
                     backdropFilter: "blur(10px)",
                     fontSize: "33px",
-                    height: "100%",
+                    height: "80%",
                   }}
                   onClick={incrementWorkerCount}
                 >
@@ -661,104 +686,120 @@ function StepperPage() {
               >
                 Are you pre or post product launch?{" "}
               </Typography>
-              <RadioGroup
-                name="type"
-                value={projectData.type}
-                onChange={handleInputChange}
-                sx={{ display: "flex", flexDirection: "column", gap: 1 }}
-              >
-                <FormControlLabel
-                  value="Pre Product"
-                  control={<Radio sx={{ color: "gray" }} />}
-                  label="Pre Product"
-                  sx={{
-                    color: "#ffff",
-
-                    borderRadius: "4px",
-                    "&.Mui-checked": {
-                      borderColor: "green",
-                      backgroundColor: "lightgreen",
-                    },
-                  }}
-                />
-
-                <FormControlLabel
-                  value="Post Product"
-                  control={<Radio sx={{ color: "gray" }} />}
-                  label="Post Product"
-                  sx={{
-                    color: "#ffff",
-
-                    borderRadius: "4px",
-                    "&.Mui-checked": {
-                      borderColor: "green",
-                      backgroundColor: "lightgreen",
-                    },
-                  }}
-                />
-              </RadioGroup>
-
-              <FormControlLabel
+              <Box
                 sx={{
-                  color: "#fff",
                   display: "flex",
-                  flexDirection: "column-reverse",
-                  justifyContent: "center",
-                  alignContent: "center",
-                  alignItems: "start",
-                  width: "90%",
-                  my: 4,
+                  flexDirection: "column",
+                  width: {
+                    xs: "100%",
+                    sm: "100%",
+                    md: "90%",
+                    lg: "90%",
+                  },
+                  justifyContent: "flex-start",
                 }}
-                control={
-                  <TextField
-                    placeholder="awesomenft@gmail.com"
-                    type="email"
-                    name="email"
-                    value={projectData.email}
-                    onChange={handleInputChange}
+              >
+                <RadioGroup
+                  name="type"
+                  value={projectData.type}
+                  onChange={handleInputChange}
+                  sx={{ display: "flex", flexDirection: "column", gap: 1 }}
+                >
+                  <FormControlLabel
+                    value="Pre Product"
+                    control={<Radio sx={{ color: "gray" }} />}
+                    label="Pre Product"
                     sx={{
-                      my: 2,
-                      color: "#fff",
-                      borderRadius: "10px",
-                      border: "1px solid rgba(255, 255, 255, 0.1)",
+                      color: "#ffff",
 
-                      "& .MuiInputBase-input": {
-                        color: "#fff",
-                        "&::placeholder": {
-                          color: "#fff",
-                        },
+                      borderRadius: "4px",
+                      "&.Mui-checked": {
+                        borderColor: "green",
+                        backgroundColor: "lightgreen",
                       },
                     }}
                   />
-                }
-                label={
-                  <span
-                    style={{
-                      fontWeight: "bolder",
-                      fontSize: "33px",
+
+                  <FormControlLabel
+                    value="Post Product"
+                    control={<Radio sx={{ color: "gray" }} />}
+                    label="Post Product"
+                    sx={{
+                      color: "#ffff",
+
+                      borderRadius: "4px",
+                      "&.Mui-checked": {
+                        borderColor: "green",
+                        backgroundColor: "lightgreen",
+                      },
                     }}
-                  >
-                    {" "}
-                    Contact Email{" "}
-                  </span>
-                }
-                labelPlacement="start"
-              />
+                  />
+                </RadioGroup>
+
+                <FormControlLabel
+                  sx={{
+                    color: "#fff",
+                    display: "flex",
+                    flexDirection: "column-reverse",
+                    justifyContent: "flex-start",
+                    alignContent: "flex-start",
+                    alignItems: "start",
+                    my: 4,
+                  }}
+                  control={
+                    <TextField
+                      placeholder="awesomenft@gmail.com"
+                      type="email"
+                      name="email"
+                      value={projectData.email}
+                      onChange={handleInputChange}
+                      sx={{
+                        my: 2,
+                        width: {
+                          xs: "100%",
+                          sm: "100%",
+                          md: "70%",
+                          lg: "50%",
+                        },
+                        color: "#fff",
+                        borderRadius: "10px",
+                        border: "1px solid rgba(255, 255, 255, 0.1)",
+
+                        "& .MuiInputBase-input": {
+                          color: "#fff",
+                          "&::placeholder": {
+                            color: "#fff",
+                          },
+                        },
+                      }}
+                    />
+                  }
+                  label={
+                    <span
+                      style={{
+                        fontWeight: "bolder",
+                        fontSize: "33px",
+                      }}
+                    >
+                      Contact Email{" "}
+                    </span>
+                  }
+                  labelPlacement="start"
+                />
+              </Box>
 
               <Box
                 sx={{
                   display: "flex",
-                  justifyContent: "space-around",
+                  justifyContent: "space-between",
                   justifyItems: "flex-start",
-                  alignItems: "flex-start",
                   padding: "0px",
                   gap: "32px",
-
                   width: {
                     xs: "100%",
                     sm: "100%",
                     md: "70%",
-                    lg: "50%",
+                    lg: "40%",
                   },
                 }}
               >
